@@ -1,6 +1,8 @@
 
 %define	dovecot_series		2.0
 %define	pigeonhole_version	0.2.1
+
+
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
@@ -21,13 +23,15 @@ BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define skip_post_check_so	libdovecot-sieve.so.0.0.0
+
 %description
 Dovecot Pigeonhole is implementation of Sieve and Managesieve for
-Dovecot v2
+Dovecot v2.
 
 %description -l pl.UTF-8
 Dovecot Pigeonhole jest implementacją Sieve i Managesieve dla Dovecot
-v2
+v2.
 
 %package devel
 Summary:	Libraries and headers for %{name}
@@ -56,13 +60,14 @@ This package provides the Manage Sieve daemon for dovecot.
 
 %configure \
 		--with-dovecot=%{_libdir} \
-	--with-managesieve=yes \
+		--with-managesieve=yes \
 		--enable-header-install=yes \
 		--prefix=%{_libdir}/dovecot
 
 %{__make}
 
 %install
+
 rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
@@ -71,15 +76,19 @@ rm -rf $RPM_BUILD_ROOT
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.la' | xargs rm -f
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
 
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+
 %files
+%defattr(644,root,root,755)
+
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/sieve-test
 %attr(755,root,root) %{_bindir}/sievec
 %attr(755,root,root) %{_bindir}/sieve-dump
-%{_libdir}/dovecot/lib90_sieve_plugin.so
+%{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
 
 %{_mandir}/man1/sieve-test.1*
@@ -87,8 +96,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/sieved.1*
 %{_mandir}/man1/sieve-dump.1*
 %{_mandir}/man7/pigeonhole.7*
-%{_docdir}/dovecot-2.*/example-config/conf.d/90-sieve.conf
-%{_docdir}/dovecot-2.*/sieve
+%{_docdir}/dovecot/example-config/conf.d/90-sieve.conf
+%{_docdir}/dovecot/sieve
 
 %files devel
 %defattr(644,root,root,755)
@@ -97,9 +106,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dovecot-managesieve
 %defattr(644,root,root,755)
-%dir %{_libdir}/dovecot/settings/
-%{_libdir}/dovecot/settings/libmanagesieve_login_settings.so
-%{_libdir}/dovecot/settings/libmanagesieve_settings.so
+%dir %{_libdir}/dovecot/plugins/settings/
+%{_libdir}/dovecot/plugins/settings/libmanagesieve_login_settings.so
+%{_libdir}/dovecot/plugins/settings/libmanagesieve_settings.so
 %{_libexecdir}/dovecot/managesieve
 %{_libexecdir}/dovecot/managesieve-login
-%{_docdir}/dovecot-2*/example-config/conf.d/20-managesieve.conf
+%{_docdir}/dovecot/example-config/conf.d/20-managesieve.conf
