@@ -1,0 +1,42 @@
+diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/configure
+--- dovecot-2.0-pigeonhole-0.2.1/configure	2010-09-26 22:55:32.000000000 +0000
++++ dovecot-2.0-pigeonhole-0.2.1/configure	2010-10-13 11:56:23.728816633 +0000
+@@ -10535,19 +10535,19 @@
+ fi
+ 
+ 
+-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for dovecot-config in \"$dovecotdir\"" >&5
+-$as_echo_n "checking for dovecot-config in \"$dovecotdir\"... " >&6; }
+-	if test -f "$dovecotdir/dovecot-config"; then
+-		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $dovecotdir/dovecot-config" >&5
+-$as_echo "$dovecotdir/dovecot-config" >&6; }
++	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for dovecot-devel in \"$dovecotdir\"" >&5
++$as_echo_n "checking for dovecot-devel in \"$dovecotdir\"... " >&6; }
++	if test -f "$dovecotdir/dovecot-devel"; then
++		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $dovecotdir/dovecot-devel" >&5
++$as_echo "$dovecotdir/dovecot-devel" >&6; }
+ 	else
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
+ $as_echo "not found" >&6; }
+ 		{ $as_echo "$as_me:${as_lineno-$LINENO}: " >&5
+ $as_echo "$as_me: " >&6;}
+-		{ $as_echo "$as_me:${as_lineno-$LINENO}: Use --with-dovecot=DIR to provide the path to the dovecot-config file." >&5
+-$as_echo "$as_me: Use --with-dovecot=DIR to provide the path to the dovecot-config file." >&6;}
+-		as_fn_error $? "dovecot-config not found" "$LINENO" 5
++		{ $as_echo "$as_me:${as_lineno-$LINENO}: Use --with-dovecot=DIR to provide the path to the dovecot-devel file." >&5
++$as_echo "$as_me: Use --with-dovecot=DIR to provide the path to the dovecot-devel file." >&6;}
++		as_fn_error $? "dovecot-devel not found" "$LINENO" 5
+ 	fi
+ 
+ 	old=`pwd`
+@@ -10556,8 +10556,8 @@
+ 	cd $old
+ 	DISTCHECK_CONFIGURE_FLAGS="--with-dovecot=$abs_dovecotdir --without-dovecot-install-dirs"
+ 
+-	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/dovecot-config`
+-	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/dovecot-config`
++	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/dovecot-devel`
++	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/dovecot-devel`
+ 
+ 	if test "$use_install_dirs" = "no"; then
+ 		dovecot_pkgincludedir='$(pkgincludedir)'
