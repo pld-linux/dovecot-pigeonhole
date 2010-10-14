@@ -59,7 +59,7 @@ This package provides the Manage Sieve daemon for dovecot.
 %build
 
 %configure \
-		--with-dovecot=%{_libdir}/dovecot \
+		--with-dovecot=%{_libdir} \
 		--with-managesieve=yes \
 		--enable-header-install=yes \
 		--prefix=%{_libdir}/dovecot
@@ -75,8 +75,7 @@ rm -rf $RPM_BUILD_ROOT
 #remove the libtool archives
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.la' | xargs rm -f
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
-ln -s dovecot/libdovecot-login.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot-login.so.0
-ln -s dovecot/libdovecot.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot.so.0 
+
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -91,8 +90,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sieve-dump
 %{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
-
-%{_libdir}/libdovecot.so.0
 
 %{_mandir}/man1/sieve-test.1*
 %{_mandir}/man1/sievec.1*
@@ -109,11 +106,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dovecot-managesieve
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/dovecot/managesieve
-%attr(755,root,root) %{_libexecdir}/dovecot/managesieve-login
-
-%{_libdir}/libdovecot-login.so.0
-
 %dir %{_libdir}/dovecot/plugins/settings/
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_login_settings.so
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_settings.so
