@@ -1,6 +1,6 @@
 diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/configure
 --- dovecot-2.0-pigeonhole-0.2.1/configure	2010-09-26 22:55:32.000000000 +0000
-+++ dovecot-2.0-pigeonhole-0.2.1/configure	2010-10-13 11:56:23.728816633 +0000
++++ dovecot-2.0-pigeonhole-0.2.1/configure	2010-10-14 06:36:23.728816633 +0000
 @@ -10535,19 +10535,19 @@
  fi
  
@@ -12,9 +12,9 @@ diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/co
 -$as_echo "$dovecotdir/dovecot-config" >&6; }
 +	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for dovecot-devel in \"$dovecotdir\"" >&5
 +$as_echo_n "checking for dovecot-devel in \"$dovecotdir\"... " >&6; }
-+	if test -f "$dovecotdir/dovecot-devel"; then
-+		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $dovecotdir/dovecot-devel" >&5
-+$as_echo "$dovecotdir/dovecot-devel" >&6; }
++	if test -f "$dovecotdir/../dovecot-devel"; then
++		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $dovecotdir/../dovecot-devel" >&5
++$as_echo "$dovecotdir/../dovecot-devel" >&6; }
  	else
  		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: not found" >&5
  $as_echo "not found" >&6; }
@@ -35,8 +35,8 @@ diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/co
  
 -	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/dovecot-config`
 -	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/dovecot-config`
-+	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/dovecot-devel`
-+	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/dovecot-devel`
++	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/../dovecot-devel`
++	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/../dovecot-devel`
  
  	if test "$use_install_dirs" = "no"; then
  		dovecot_pkgincludedir='$(pkgincludedir)'
