@@ -1,7 +1,7 @@
-diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/configure
---- dovecot-2.0-pigeonhole-0.2.1/configure	2010-09-26 22:55:32.000000000 +0000
-+++ dovecot-2.0-pigeonhole-0.2.1/configure	2010-10-14 06:36:23.728816633 +0000
-@@ -10535,19 +10535,19 @@
+diff -ruN dovecot-2.1-pigeonhole-0.3.1/configure dovecot-2.1-pigeonhole-0.3.1-new/configure
+--- dovecot-2.1-pigeonhole-0.3.1/configure	2012-05-25 21:32:09.000000000 +0000
++++ dovecot-2.1-pigeonhole-0.3.1/configure	2012-06-10 09:46:34.761871135 +0000
+@@ -11385,19 +11385,19 @@
  fi
  
  
@@ -29,13 +29,13 @@ diff -ruN dovecot-2.0-pigeonhole-0.2.1/configure dovecot-2.0-pigeonhole-0.2.1/co
  	fi
  
  	old=`pwd`
-@@ -10556,8 +10556,8 @@
+@@ -11406,8 +11406,8 @@
  	cd $old
  	DISTCHECK_CONFIGURE_FLAGS="--with-dovecot=$abs_dovecotdir --without-dovecot-install-dirs"
  
--	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/dovecot-config`
+-	eval `grep -i '^dovecot_[a-z_]*=' "$dovecotdir"/dovecot-config`
 -	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/dovecot-config`
-+	eval `grep -i '^dovecot_[a-z]*=' "$dovecotdir"/../dovecot-devel`
++	eval `grep -i '^dovecot_[a-z_]*=' "$dovecotdir"/../dovecot-devel`
 +	eval `grep '^LIBDOVECOT[A-Z_]*=' "$dovecotdir"/../dovecot-devel`
  
  	if test "$use_install_dirs" = "no"; then
