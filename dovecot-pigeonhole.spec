@@ -10,7 +10,7 @@ Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Daemons
 Source0:	http://www.rename-it.nl/dovecot/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
@@ -80,11 +80,15 @@ find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
 ln -s dovecot/libdovecot-login.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot-login.so.0
 ln -s dovecot/libdovecot.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot.so.0
 
+%{__rm} -r $RPM_BUILD_ROOT%{_docdir}
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
+%doc doc/example-config/conf.d/90-sieve.conf
+%doc doc/extensions doc/script-location-dict.txt
 %attr(755,root,root) %{_bindir}/sieve-test
 %attr(755,root,root) %{_bindir}/sievec
 %attr(755,root,root) %{_bindir}/sieve-dump
@@ -99,8 +103,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/sieved.1*
 %{_mandir}/man1/sieve-dump.1*
 %{_mandir}/man7/pigeonhole.7*
-%{_docdir}/dovecot/example-config/conf.d/90-sieve.conf
-%{_docdir}/dovecot/sieve
 
 %files devel
 %defattr(644,root,root,755)
@@ -109,6 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n dovecot-managesieve
 %defattr(644,root,root,755)
+%doc doc/example-config/conf.d/20-managesieve.conf
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve-login
 
@@ -119,4 +122,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_settings.so
 %{_libexecdir}/dovecot/managesieve
 %{_libexecdir}/dovecot/managesieve-login
-%{_docdir}/dovecot/example-config/conf.d/20-managesieve.conf
