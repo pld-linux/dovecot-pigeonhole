@@ -2,6 +2,7 @@
 # - new unpackaged files:
 #   /usr/bin/sieve-filter
 #   /usr/share/man/man1/sieve-filter.1.gz
+# - fix mess with dovecot libraries (symlinks in package that shouldn't be here)
 
 %define	dovecot_series		2.1
 %define	pigeonhole_version	0.3.1
@@ -74,6 +75,8 @@ rm -rf $RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.la' | xargs rm -f
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
+
+# ??? - why are these in this package?
 ln -s dovecot/libdovecot-login.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot-login.so.0
 ln -s dovecot/libdovecot.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot.so.0
 
@@ -85,9 +88,10 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sieve-test
 %attr(755,root,root) %{_bindir}/sievec
 %attr(755,root,root) %{_bindir}/sieve-dump
-%{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
+%attr(755,root,root) %{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
 
+# ??? - why is this in this package?
 %attr(755,root,root) %{_libdir}/libdovecot.so.0
 
 %{_mandir}/man1/sieve-test.1*
