@@ -1,7 +1,10 @@
+# TODO
+# - new unpackaged files:
+#   /usr/bin/sieve-filter
+#   /usr/share/man/man1/sieve-filter.1.gz
 
 %define	dovecot_series		2.1
 %define	pigeonhole_version	0.3.1
-
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
@@ -25,10 +28,10 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define skip_post_check_so	libdovecot-sieve.so.0.0.0
 
 %description
-Dovecot Pigeonhole is implementation of Sieve for Dovecot v2.X
+Dovecot Pigeonhole is implementation of Sieve for Dovecot v2.x
 
 %description -l pl.UTF-8
-Dovecot Pigeonhole jest implementacją Sieve dla Dovecot v2.X
+Dovecot Pigeonhole jest implementacją Sieve dla Dovecot v2.x
 
 %package devel
 Summary:	Libraries and headers for %{name}
@@ -56,7 +59,6 @@ Tn pakiet zawiera demona Manage Sieve dla dovecot.
 %patch0 -p1
 
 %build
-
 %configure \
 	--with-dovecot=%{_libdir}/dovecot \
 	--with-managesieve=yes \
@@ -67,8 +69,8 @@ Tn pakiet zawiera demona Manage Sieve dla dovecot.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.la' | xargs rm -f
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
