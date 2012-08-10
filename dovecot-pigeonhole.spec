@@ -120,5 +120,3 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_libdir}/dovecot/plugins/settings/
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_login_settings.so
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_settings.so
-%{_libexecdir}/dovecot/managesieve
-%{_libexecdir}/dovecot/managesieve-login
