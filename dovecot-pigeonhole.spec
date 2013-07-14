@@ -4,23 +4,23 @@
 #   /usr/share/man/man1/sieve-filter.1.gz
 # - fix mess with dovecot libraries (symlinks in package that shouldn't be here)
 
-%define	dovecot_series		2.1
-%define	pigeonhole_version	0.3.3
+%define	dovecot_series		2.2
+%define	pigeonhole_version	0.4.1
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	3
+Release:	0.1
 License:	LGPL
 Group:		Daemons
 Source0:	http://www.rename-it.nl/dovecot/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
-# Source0-md5:	36a2a5dd68c18f28f653c44abb2e0e9b
+# Source0-md5:	a65196ff02c314eaf53373e281426bcd
 Patch0:		%{name}-config.patch
 URL:		http://www.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	dovecot-devel >= 1:2.0
+BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
 BuildRequires:	flex
 BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
@@ -63,7 +63,6 @@ Tn pakiet zawiera demona Manage Sieve dla dovecot.
 %configure \
 	--with-dovecot=%{_libdir}/dovecot \
 	--with-managesieve=yes \
-	--enable-header-install=yes \
 	--prefix=%{_libdir}/dovecot
 
 %{__make}
@@ -90,15 +89,17 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/example-config/conf.d/90-sieve.conf
 %doc doc/extensions doc/script-location-dict.txt
 %attr(755,root,root) %{_bindir}/sieve-test
+%attr(755,root,root) %{_bindir}/sieve-filter
 %attr(755,root,root) %{_bindir}/sievec
 %attr(755,root,root) %{_bindir}/sieve-dump
 %attr(755,root,root) %{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
-
-# ??? - why is this in this package?
-%attr(755,root,root) %{_libdir}/libdovecot.so.0
+%attr(755,root,root) %{_libdir}/dovecot/plugins/doveadm/lib10_doveadm_sieve_plugin.so
+%dir %{_libdir}/dovecot/sieve
+%attr(755,root,root) %{_libdir}/dovecot/sieve/lib90_sieve_extprograms_plugin.so
 
 %{_mandir}/man1/sieve-test.1*
+%{_mandir}/man1/sieve-filter.1.gz
 %{_mandir}/man1/sievec.1*
 %{_mandir}/man1/sieved.1*
 %{_mandir}/man1/sieve-dump.1*
@@ -114,8 +115,6 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/example-config/conf.d/20-managesieve.conf
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve-login
-
-%attr(755,root,root) %{_libdir}/libdovecot-login.so.0
 
 %dir %{_libdir}/dovecot/plugins/settings/
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_login_settings.so
