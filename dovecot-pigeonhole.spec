@@ -2,7 +2,6 @@
 # - new unpackaged files:
 #   /usr/bin/sieve-filter
 #   /usr/share/man/man1/sieve-filter.1.gz
-# - fix mess with dovecot libraries (symlinks in package that shouldn't be here)
 
 %define	dovecot_series		2.2
 %define	pigeonhole_version	0.4.2
@@ -10,17 +9,16 @@ Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	1
+Release:	2
 License:	LGPL
 Group:		Daemons
 Source0:	http://www.rename-it.nl/dovecot/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
 # Source0-md5:	e8cb4976db9811d37e9d870f2f75ffef
-Patch0:		%{name}-config.patch
 URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
+BuildRequires:	dovecot-devel >= 1:2.2.9-2
 BuildRequires:	flex
 BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
@@ -57,7 +55,6 @@ Tn pakiet zawiera demona Manage Sieve dla dovecot.
 
 %prep
 %setup -q -n dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}
-%patch0 -p1
 
 %build
 %configure \
@@ -74,10 +71,6 @@ rm -rf $RPM_BUILD_ROOT
 
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.la' | xargs rm -f
 find $RPM_BUILD_ROOT%{_libdir}/dovecot/ -name '*.a' | xargs rm -f
-
-# ??? - why are these in this package?
-ln -s dovecot/libdovecot-login.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot-login.so.0
-ln -s dovecot/libdovecot.so.0.0.0 $RPM_BUILD_ROOT%{_libdir}/libdovecot.so.0
 
 %{__rm} -r $RPM_BUILD_ROOT%{_docdir}
 
