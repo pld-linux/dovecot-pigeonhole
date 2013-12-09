@@ -16,7 +16,7 @@ Group:		Daemons
 Source0:	http://www.rename-it.nl/dovecot/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
 # Source0-md5:	a65196ff02c314eaf53373e281426bcd
 Patch0:		%{name}-config.patch
-URL:		http://www.dovecot.org/
+URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
