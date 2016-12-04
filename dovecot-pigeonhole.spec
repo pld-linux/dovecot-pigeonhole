@@ -2,7 +2,8 @@
 # - new unpackaged files:
 #   /usr/bin/sieve-filter
 #   /usr/share/man/man1/sieve-filter.1.gz
-
+%bcond_without	tests
+#
 %define	dovecot_series		2.2
 %define	pigeonhole_version	0.4.2
 Summary:	Sieve plugin for dovecot
@@ -63,6 +64,8 @@ Tn pakiet zawiera demona Manage Sieve dla dovecot.
 	--prefix=%{_libdir}/dovecot
 
 %{__make}
+
+%{?with_tests:%{__make} -j1 check}
 
 %install
 rm -rf $RPM_BUILD_ROOT
