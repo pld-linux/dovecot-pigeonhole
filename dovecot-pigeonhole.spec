@@ -1,20 +1,17 @@
-# TODO
-# - new unpackaged files:
-#   /usr/bin/sieve-filter
-#   /usr/share/man/man1/sieve-filter.1.gz
+#
 %bcond_without	tests
 #
 %define	dovecot_series		2.2
-%define	pigeonhole_version	0.4.2
+%define	pigeonhole_version	0.4.17
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	18
+Release:	0.1
 License:	LGPL
 Group:		Daemons
-Source0:	http://www.rename-it.nl/dovecot/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
-# Source0-md5:	e8cb4976db9811d37e9d870f2f75ffef
+Source0:	https://pigeonhole.dovecot.org/releases/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
+# Source0-md5:	0b6e40396c9032f3c27f7a3ef15a3db6
 URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -51,8 +48,10 @@ Summary(pl.UTF-8):	Manage Sieve demon dla dovecot
 Group:		Daemons
 
 %description -n dovecot-managesieve
+Manage Sieve daemon for dovecot.
+
 %description -n dovecot-managesieve -l pl.UTF-8
-Tn pakiet zawiera demona Manage Sieve dla dovecot.
+Ten pakiet zawiera demona Manage Sieve dla dovecot.
 
 %prep
 %setup -q -n dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}
@@ -83,19 +82,24 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc doc/example-config/conf.d/90-sieve.conf
-%doc doc/extensions doc/script-location-dict.txt
+%doc doc/extensions
 %attr(755,root,root) %{_bindir}/sieve-test
 %attr(755,root,root) %{_bindir}/sieve-filter
 %attr(755,root,root) %{_bindir}/sievec
 %attr(755,root,root) %{_bindir}/sieve-dump
 %attr(755,root,root) %{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
+%attr(755,root,root) %{_libdir}/dovecot/plugins/lib95_imap_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/plugins/doveadm/lib10_doveadm_sieve_plugin.so
-%dir %{_libdir}/dovecot/sieve
-%attr(755,root,root) %{_libdir}/dovecot/sieve/lib90_sieve_extprograms_plugin.so
+%dir %{_libdir}/dovecot/plugins/settings
+%attr(755,root,root) %{_libdir}/dovecot/plugins/settings/libpigeonhole_settings.so
+%dir  %{_libdir}/dovecot/plugins/sieve
+%attr(755,root,root) %{_libdir}/dovecot/plugins/sieve/lib90_sieve_extprograms_plugin.so
+%attr(755,root,root) %{_libdir}/dovecot/plugins/sieve/lib90_sieve_imapsieve_plugin.so
 
+%{_mandir}/man1/doveadm-sieve.1*
 %{_mandir}/man1/sieve-test.1*
-%{_mandir}/man1/sieve-filter.1.gz
+%{_mandir}/man1/sieve-filter.1*
 %{_mandir}/man1/sievec.1*
 %{_mandir}/man1/sieved.1*
 %{_mandir}/man1/sieve-dump.1*
@@ -103,6 +107,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%{_aclocaldir}/dovecot-pigeonhole.m4
 %dir %{_includedir}/dovecot/sieve
 %{_includedir}/dovecot/sieve/*.h
 
@@ -111,7 +116,5 @@ rm -rf $RPM_BUILD_ROOT
 %doc doc/example-config/conf.d/20-managesieve.conf
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve
 %attr(755,root,root) %{_libexecdir}/dovecot/managesieve-login
-
-%dir %{_libdir}/dovecot/plugins/settings/
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_login_settings.so
 %{_libdir}/dovecot/plugins/settings/libmanagesieve_settings.so
