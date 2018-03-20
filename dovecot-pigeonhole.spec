@@ -7,7 +7,7 @@ Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	4
+Release:	5
 License:	LGPL
 Group:		Daemons
 Source0:	https://pigeonhole.dovecot.org/releases/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
