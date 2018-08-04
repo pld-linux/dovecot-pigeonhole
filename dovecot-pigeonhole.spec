@@ -1,8 +1,8 @@
 #
 %bcond_without	tests
 #
-%define	dovecot_series		2.2
-%define	pigeonhole_version	0.4.20
+%define	dovecot_series		2.3
+%define	pigeonhole_version	0.5.2
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
@@ -11,12 +11,12 @@ Release:	7
 License:	LGPL
 Group:		Daemons
 Source0:	https://pigeonhole.dovecot.org/releases/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
-# Source0-md5:	598efdabdd3d2d2337b481ddd2cac390
+# Source0-md5:	b07a890f61774663ea1c94afff9aa0ce
 URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	dovecot-devel >= 1:2.2.9-2
+BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
 BuildRequires:	flex
 BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
@@ -90,6 +90,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/sieve-dump
 %attr(755,root,root) %{_libdir}/dovecot/plugins/lib90_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/libdovecot-sieve.so*
+%attr(755,root,root) %{_libdir}/dovecot/plugins/lib95_imap_filter_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/plugins/lib95_imap_sieve_plugin.so
 %attr(755,root,root) %{_libdir}/dovecot/plugins/doveadm/lib10_doveadm_sieve_plugin.so
 %dir %{_libdir}/dovecot/plugins/settings
