@@ -16,7 +16,8 @@ URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
+#BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
+BuildRequires:	dovecot-devel >= 1:2.3.5
 BuildRequires:	flex
 BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
