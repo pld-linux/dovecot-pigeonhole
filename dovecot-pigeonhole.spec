@@ -59,7 +59,7 @@ Ten pakiet zawiera demona Manage Sieve dla dovecot.
 
 %build
 %configure \
-	VALGRIND=no \
+	ac_cv_path_VALGRIND=reject \
 	--with-dovecot=%{_libdir}/dovecot \
 	--with-managesieve=yes \
 	--prefix=%{_libdir}/dovecot
