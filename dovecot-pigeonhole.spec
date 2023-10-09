@@ -2,7 +2,7 @@
 %bcond_without	tests
 #
 %define	dovecot_series		2.3
-%define	pigeonhole_version	0.5.19
+%define	pigeonhole_version	0.5.21
 Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
@@ -11,13 +11,13 @@ Release:	4
 License:	LGPL
 Group:		Daemons
 Source0:	https://pigeonhole.dovecot.org/releases/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
-# Source0-md5:	500471a71a0525a94ab8e8a7791eab8b
+# Source0-md5:	2581d1e729eff7d86a7046b10d970448
 URL:		http://pigeonhole.dovecot.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 #BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
-BuildRequires:	dovecot-devel >= 1:2.3.19
+BuildRequires:	dovecot-devel >= 1:2.3.21
 BuildRequires:	flex
 BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
