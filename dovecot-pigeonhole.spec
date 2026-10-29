@@ -7,7 +7,7 @@ Summary:	Sieve plugin for dovecot
 Summary(pl.UTF-8):	Wtyczka Sieve i Managesieve dla dovecota
 Name:		dovecot-pigeonhole
 Version:	%{dovecot_series}_%{pigeonhole_version}
-Release:	2
+Release:	3
 License:	LGPL
 Group:		Daemons
 Source0:	https://pigeonhole.dovecot.org/releases/%{dovecot_series}/dovecot-%{dovecot_series}-pigeonhole-%{pigeonhole_version}.tar.gz
@@ -19,15 +19,13 @@ Patch0:		CVE-2025-59032.patch
 Patch1:		CVE-2026-27857.patch
 Patch2:		CVE-2026-27858.patch
 Patch3:		CVE-2026-40016.patch
-URL:		http://pigeonhole.dovecot.org/
-BuildRequires:	autoconf
-BuildRequires:	automake
-BuildRequires:	bison
+Patch4:		CVE-2026-40013.patch
+Patch5:		CVE-2026-33605.patch
+Patch6:		CVE-2026-42007.patch
+URL:		https://pigeonhole.dovecot.org/
 #BuildRequires:	dovecot-devel >= 1:%{dovecot_series}
 # CVE-2026-27857 changed the imap_parser_create() API in lib-imap
 BuildRequires:	dovecot-devel >= 1:2.3.21.1-9
-BuildRequires:	flex
-BuildRequires:	libtool
 %requires_eq_to	dovecot dovecot-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -69,6 +67,9 @@ Ten pakiet zawiera demona Manage Sieve dla dovecot.
 %patch -P1 -p1
 %patch -P2 -p1
 %patch -P3 -p1
+%patch -P4 -p1
+%patch -P5 -p1
+%patch -P6 -p1
 
 %build
 %configure \
